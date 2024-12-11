@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { Country, CountrySchema } from 'src/schemas/Country.schema';
+import { Country, CountrySchema } from './country.schema';
 import { CountryService } from './country.service';
 import { HttpModule } from '@nestjs/axios';
 import { CountryController } from './country.controller';

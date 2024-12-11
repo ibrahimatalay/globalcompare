@@ -1,4 +1,4 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, NotFoundException, Param } from '@nestjs/common';
 import { IndicatorService } from './indicator.service';
 import { IndicatorResponseDto } from './dto/indicator-response.dto';
 
@@ -14,5 +14,17 @@ export class IndicatorController {
             name: indicator.name,
             description: indicator.description,
         }));
+    }
+
+    @Get(':id')
+    async getById(@Param('id') id: string): Promise<IndicatorResponseDto> {
+        const indicator = await this.indicatorService.getById(id);
+        if (!indicator) throw new NotFoundException(`Indicator with ID ${id} not found`);
+
+        return {
+            id: indicator.id,
+            name: indicator.name,
+            description: indicator.description,
+        };
     }
 }
