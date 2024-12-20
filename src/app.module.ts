@@ -8,7 +8,7 @@ import { WorldbankModule } from './worldbank/worldbank.module';
 @Module({
   imports: [
     ScheduleModule.forRoot(),
-    MongooseModule.forRoot("mongodb://localhost:27017/globalcompare"),
+    MongooseModule.forRoot(process.env.MONGO_URL),
     CountryModule,
     IndicatorModule,
     WorldbankModule
